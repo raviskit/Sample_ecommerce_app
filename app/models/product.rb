@@ -1,8 +1,9 @@
 class Product < ApplicationRecord
   has_one :document
   belongs_to :category
+  has_many :order_items
   accepts_nested_attributes_for :document
-  
+
   searchable do
       text :title, :base_price
       time :created_at

@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
+  #load_and_authorize_resource
   skip_before_action :authenticate_user!, only: :index
   # GET /products
   # GET /products.json
@@ -9,6 +9,7 @@ class ProductsController < ApplicationController
       @products = Product.search do
         fulltext search
       end
+       @order_item = current_order.order_items.new
   end
 
   # GET /products/1
@@ -29,8 +30,8 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
+    #byebug
     @product = Product.new(product_params)
-
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
@@ -65,7 +66,9 @@ class ProductsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+ def order_history
+    @order_history = Order.all
+ end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
@@ -74,6 +77,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:title, :price)
+      params.require(:product).permit! # not liking it, need to die this
     end
 end

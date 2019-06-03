@@ -9,7 +9,11 @@ class PaymentsController < ApplicationController
   end
   def verify
     @phone_number = current_user
-    @phone_number.verify(params[:pin])
+    if @phone_number.verify(params[:pin])
+      current_user.orders.create!(product_id: current_order.product_id)
+      current_order.update({user: current_user})
+      current_order.order_items.update({order_id: nil})
+    end
     respond_to do |format|
       format.js
     end
