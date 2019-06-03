@@ -14,8 +14,8 @@
                                 $<%= product.price %></p>
                         </div>
                         <div class="col-xs-12 col-md-6">
-                            <a class="btn btn-success" href="/">Buy</a>
-                        </div>
+                          <%= link_to "Buy", new_payment_path(product_id: product.id), :class=>"btn btn-success"%>
+                       </div>
                     </div>
                 </div>
             </div>
