@@ -22,6 +22,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.search_filter(params[:category_id], params[:price])
+    @order_item = current_order.order_items.new
     respond_to do | format |
       format.html {}
       format.js {}

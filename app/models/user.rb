@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  Authy.api_key = 'HpmjUNMXCTLRUnbIOAz74qUY7cLz6z7B'
-  Authy.api_uri = 'https://api.authy.com/'
+  Authy.api_key = Rails.application.secrets.authy_key
+  Authy.api_uri = Rails.application.secrets.authy_uri
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -32,7 +32,7 @@ class User < ApplicationRecord
       end
     end
    def twilio_client
-     Twilio::REST::Client.new('AC66ded78359d956172d423fb8f095f568', 'e25ee039ee48b712ec57f4f65e080e94')
+     Twilio::REST::Client.new(Rails.application.secrets.twilio_key, Rails.application.secrets.twilio_secret_token)
    end
    def verify(entered_pin)
      if self.otp == entered_pin or Authy::API.verify(:id => authy_id, :token => entered_pin, :force => true).ok?

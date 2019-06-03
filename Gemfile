@@ -26,6 +26,8 @@ gem 'pg'
 gem 'sunspot_rails'
 gem 'faraday'
 gem 'authy'
+gem 'rspec-rails'
+gem "rails-erd"
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
@@ -45,9 +47,13 @@ gem 'cancancan'
 gem 'twilio-ruby'
 gem 'rubocop'
 gem 'jquery-rails'
+gem 'test-unit'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails'
+  gem 'factory_bot'
+  gem 'faker'
 end
 
 group :development do

@@ -10,28 +10,30 @@
       </ul>
     </div>
   <% end %>
-<div class="container">
-  <div class="form-group">
-    <%= f.label :title %>
-    <%= f.text_field :title, :class=>"form-control" %>
-  </div>
+  <table class = "table">
+    <tr>
+    <td><%= f.label :title %></td>
+    <td><%= f.text_field :title, :class=>"form-control" %></td>
+  </tr>
 
-  <div class="form-group">
-    <%= f.label :price %>
-    <%= f.text_field :price, :class=>"form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :category %>
-    <%= f.select :category_id,options_for_select(category_ids), :class=>"form-control" %>
-  </div>
-  <div class="form-group">
+  <tr>
+    <td><%= f.label :price %></td>
+    <td><%= f.text_field :price, :class=>"form-control" %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :category %></td>
+    <td><%= f.select :category_id ,options_for_select(category_ids), :class=>"btn btn-primary dropdown-toggle" %></td>
+  </tr>
+  <tr>
     <%= f.fields_for :document do | doc |%>
-    <%= doc.label :photo %>
-    <%= doc.file_field :photo, :class=>"form-control" %>
+    <td><%= doc.label :photo %></td>
+    <td><%= doc.file_field :photo, :class=>"form-control" %></td>
     <%end%>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-</div>
+  </tr>
+  <tr>
+    <td><%= f.submit %></td>
+    <td></td>
+  </tr>
+</table>
+  <%= link_to '<<Back', products_path %>
 <% end %>

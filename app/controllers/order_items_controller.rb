@@ -1,9 +1,8 @@
 class OrderItemsController < ApplicationController
   skip_before_action :authenticate_user!, only: :create
-  
+
   def create
     @order = current_order
-    @order.update({product_id: params[:order_item][:product_id], user: current_user})
     @order_item = @order.order_items.new(order_item_params)
     @order.save
     session[:order_id] = @order.id

@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
-  #load_and_authorize_resource
+  before_action :set_product, only: :create
+  load_and_authorize_resource :except => [:index, :order_history]
   skip_before_action :authenticate_user!, only: :index
   # GET /products
   # GET /products.json
@@ -15,6 +15,7 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+    @product = Product.find params[:id]
   end
 
   # GET /products/new
@@ -25,16 +26,16 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
+    @product = Product.find params[:id]
   end
 
   # POST /products
   # POST /products.json
   def create
-    #byebug
     @product = Product.new(product_params)
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.html { redirect_to products_path, notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
@@ -66,13 +67,20 @@ class ProductsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
  def order_history
-    @order_history = Order.all
+   if current_user.is?(:admin)
+     @order_history = Order.where("product_id is not null")
+   else
+     @order_history = current_user.orders
+   end
  end
+
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-      @product = Product.find(params[:id])
+      @product = Product.new(product_params)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

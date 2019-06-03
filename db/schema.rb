@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2019_06_03_115341) do
     t.decimal "tax"
     t.decimal "shipping"
     t.decimal "total"
+    t.integer "quantity"
     t.index ["product_id"], name: "index_orders_on_product_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
