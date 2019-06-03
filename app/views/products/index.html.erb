@@ -1,6 +1,6 @@
 <div class="container">
     <div id="products" class="row list-group">
-      <% @products.each do | product |%>
+      <% @products.results.each do | product |%>
         <div class="item  col-xs-4 col-lg-4">
             <div class="thumbnail">
              <img class="group list-group-image" src="<%= display_file(product) %>" alt="" />

@@ -30,3 +30,8 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 public/
+solr/data
+solr/test/data
+solr/development/data
+solr/default/data
+solr/pids

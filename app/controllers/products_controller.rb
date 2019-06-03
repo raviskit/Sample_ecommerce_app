@@ -1,10 +1,14 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
   skip_before_action :authenticate_user!, only: :index
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    search = params[:search]
+      @products = Product.search do
+        fulltext search
+      end
   end
 
   # GET /products/1
