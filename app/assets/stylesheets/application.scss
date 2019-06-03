@@ -15,7 +15,14 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
- 
+
+ .nav-subnav .dropdown .btn {
+  border:0px solid transparent; /* this was 1px earlier */
+ }
+#nav-subnav {
+      background-color: #f5f5f5;
+}
+
  .container-fluid {
     background-color: #31708f;
 }

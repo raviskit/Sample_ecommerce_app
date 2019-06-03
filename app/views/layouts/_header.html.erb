@@ -1,11 +1,9 @@
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse ">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Kalebr</a>
+      <a class="navbar-brand" href="/">Kalebr</a>
     </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="/">Home</a></li>
-    </ul>
+
     <ul class="nav navbar-nav navbar-right">
       <% if user_signed_in? %>
         <li><a data-confirm="Are you sure?" data-method="delete" href="/users/sign_out"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
@@ -14,13 +12,27 @@
         <li><a href="/users/sign_in"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       <% end %>
     </ul>
+    <% if user_signed_in? %>
     <form class="navbar-form navbar-left">
     <%= form_tag('/products', method: :get) do %>
     <div class="form-group">
       <%= text_field_tag 'search', @search, :style=>"width: 240px;", :class=>"form-control" %>
-      </div>
+        </div>
       <%= submit_tag 'Search', :class=>"btn btn-default"%>
     <%end%>
   </form>
   </div>
+  <div id="nav-subnav" class="" >
+    <div class="tabbable"> <!-- Only required for left/right tabs -->
+      <ul class="nav nav-tabs">
+        <li><a>Sort by category : <%= select_tag :category_id , options_for_select(Category.pluck(:name, :id))%></a></li>
+        <% if can? :create, Product%>
+        <li><a href="/orders" data-toggle="tab">View orders</a></li>
+        <li><a href="/users" >User information</a></li>
+        <li><a href="/categories/new">Add Category</a></li>
+        <%end%>
+      </ul>
+    </div>
+  </div>
+<%end%>
 </nav>

@@ -12,5 +12,14 @@
 //
 //= require rails-ujs
 //= require activestorage
+//= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
+$(document).ready(function(){
+    $("#category_id").on("change", function(){
+        $.ajax({
+          url: "/categories/" + $("#category_id").val() + ".js",
+          data: {id: $("#category_id").val()}
+    });
+    });
+});
