@@ -7,7 +7,8 @@
   <tr>
     <td><%= @user.email%></td>
     <td><%= @user.orders.count%></td>
-    <td><%= Date.today %></td>
+    <td><%= @user.orders.pluck(:quantity).inject(:+)%></td>
+    <td><%= @user.orders.last.created_at.to_time.strftime('%B %e at %l:%M %p') %></td>
     <td></td>
   </tr>
 </table>

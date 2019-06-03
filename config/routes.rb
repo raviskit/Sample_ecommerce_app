@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   post 'payments/verify' => "payments#verify"
   resource :cart, only: [:show]
   resources :payments, only: [:new, :create]
-  resources :order_items, only: [:create, :update, :destroy]
+  resources :order_items, only: [:create, :update, :destroy], format: :js
   resources :products do
     collection do
       get "order_history"

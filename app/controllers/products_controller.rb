@@ -9,6 +9,7 @@ class ProductsController < ApplicationController
       @products = Product.search do
         fulltext search
       end
+       @products = @products.results
        @order_item = current_order.order_items.new
   end
 
@@ -67,17 +68,14 @@ class ProductsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
  def order_history
    if current_user.is?(:admin)
-     @order_history = Order.where("product_id is not null")
-   else
-     @order_history = current_user.orders
-   end
+      @order_history = Order.where("product_id is not null")
+    else
+      @order_history = current_user.orders
+  end
  end
-
   private
-
     # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.new(product_params)

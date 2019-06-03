@@ -3,10 +3,9 @@
   <head>
     <title>KalebrTestApp</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <<%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css", media: 'all', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css", media: 'all', 'data-turbolinks-track' => true %>
   </head>
 
   <body>
@@ -14,8 +13,7 @@
     <% flash.each do |_, message|%>
       <%= message %>
     <%end%>
-
-  <div class="container">
+    <div class="container">
     <div class="row">
       <div class="col-xs-6">
         <h1></h1>
@@ -25,7 +23,6 @@
       </div>
     </div>
   </div>
-
     <%= yield %>
     <%= render "layouts/footer"%>
   </body>

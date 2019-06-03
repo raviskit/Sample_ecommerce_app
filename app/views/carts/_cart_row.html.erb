@@ -3,7 +3,14 @@
   <div class="row">
     <div class="col-xs-8">
       <h4><%= product.title %></h4>
-      <p><%= image_tag product.document.photo(:thumb)%></p>
+      <p>
+       <% if product.document.is_image?%>
+       <%= image_tag product.document.photo(:thumb)%></p>
+       <%elsif product.document.is_pdf?%>
+         <%= image_tag "/assets/pdfsign.png"%>
+       <%else%>
+         <%= image_tag "/assets/unknown_product_page.jpg"%>
+       <%end%>
     </div>
     <div class="col-xs-4">
 

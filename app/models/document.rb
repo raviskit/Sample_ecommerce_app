@@ -1,7 +1,7 @@
 class Document < ApplicationRecord
   has_attached_file :photo, styles: lambda { |a|
     if a.instance.is_image?
-      {thumb: "150x150>"}
+      {thumb: "150x150>", :path => ":rails_root/app/assets/images/:id/:style/:filename"}
     elsif a.instance.is_pdf?
       {} #style must have hash to execute styles.dup
     end
