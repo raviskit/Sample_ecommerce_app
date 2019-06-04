@@ -45,4 +45,4 @@ Everything Above is implemented.
     ` rake db:setup ` #  this will create, migrate and seed data into database.
 - Setup solr. This app uses Solr for search, make sure solr is installed and running.
   `bundle exec rake sunspot:solr:start`
-- Finally start the server using `rails server`
+- Finally start the server using `rails server` and hit http://localhost:3000
