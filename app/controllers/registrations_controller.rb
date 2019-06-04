@@ -1,3 +1,4 @@
+require 'active_support/core_ext/hash/keys'
 class RegistrationsController < Devise::RegistrationsController
   def show
     @user = User.find params[:id]
